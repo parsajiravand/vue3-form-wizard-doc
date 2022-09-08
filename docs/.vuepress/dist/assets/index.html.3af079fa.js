@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-d7fef65a","path":"/slots/","title":"","lang":"en-US","frontmatter":{},"excerpt":"","headers":[{"level":2,"title":"Slots","slug":"slots","link":"#slots","children":[]}],"git":{"updatedTime":1650912011000,"contributors":[{"name":"parsa jiravand","email":"parsajiravand@gmail.com","commits":1}]},"filePathRelative":"slots/index.md"}');export{t as data};

@@ -56,7 +56,12 @@ export default  {
 }),
  plugins: [
     registerComponentsPlugin({
+      components: {
+        FormWizard:path.resolve(__dirname,'../../node_modules/vue3-form-wizard/dist/source/components/FormWizard.vue'),
+        TabContent:path.resolve(__dirname,'../../node_modules/vue3-form-wizard/dist/source/components/TabContent.vue')
+      },
       componentsDir: path.resolve(__dirname, './components'),
     }),
   ],
+
 };

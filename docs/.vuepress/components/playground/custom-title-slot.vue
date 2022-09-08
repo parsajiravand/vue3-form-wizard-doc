@@ -15,14 +15,8 @@
 </template>
 
 <script>
-import { FormWizard, TabContent } from "vue3-form-wizard";
-import "vue3-form-wizard/dist/style.css";
 export default {
   name: "CustomTitleSlost",
-  components: {
-    FormWizard,
-    TabContent,
-  },
   methods: {
     onComplete: function () {
       alert("Yay. Done!");
