@@ -3,6 +3,7 @@ import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
 import {  path } from '@vuepress/utils'
 import { defaultTheme } from 'vuepress'
 
+import "../../node_modules/vue3-form-wizard/dist/style.css";
 export default  {
    theme: defaultTheme({
   locales: {
@@ -56,7 +57,12 @@ export default  {
 }),
  plugins: [
     registerComponentsPlugin({
+      components: {
+        FormWizard:path.resolve(__dirname,'../../node_modules/vue3-form-wizard/dist/source/components/FormWizard.vue'),
+        TabContent:path.resolve(__dirname,'../../node_modules/vue3-form-wizard/dist/source/components/TabContent.vue')
+      },
       componentsDir: path.resolve(__dirname, './components'),
     }),
   ],
+
 };
