@@ -3,7 +3,6 @@ import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
 import {  path } from '@vuepress/utils'
 import { defaultTheme } from 'vuepress'
 
-import "../../node_modules/vue3-form-wizard/dist/style.css";
 export default  {
    theme: defaultTheme({
   locales: {
