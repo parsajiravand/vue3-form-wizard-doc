@@ -22,7 +22,7 @@ Download the css and js files from `dist` folder or reference them directly from
 //global registration
 import Vue3FormWizard from 'vue-form-wizard'
 import 'vue3-form-wizard/dist/style.css'
-Vue.use(VueFormWizard)
+Vue.use(Vue3FormWizard)
 
 //local registration
 import {FormWizard, TabContent} from 'vue3-form-wizard'
