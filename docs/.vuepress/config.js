@@ -1,67 +1,90 @@
 /* const { path } = require("@vuepress/utils"); */
-import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
-import {  path } from '@vuepress/utils'
-import { defaultTheme } from 'vuepress'
+import { registerComponentsPlugin } from "@vuepress/plugin-register-components";
+import { path } from "@vuepress/utils";
+import { defaultTheme } from "vuepress";
 
-export default  {
-   theme: defaultTheme({
-  locales: {
-    "/": {
-      lang: "en-US",
-      title: "VuePress",
-      description: "Vue-powered Static Site Generator",
+export default {
+  theme: defaultTheme({
+    locales: {
+      "/": {
+        lang: "en-US",
+        title: "Vue3 Form Wizard",
+        description:
+          "Vue3-form-wizard is a vue based component with no external depenendcies which simplifies tab wizard management.",
+      },
     },
-  },
+    logo: "/images/vue-3.png",
     navbar: [
       // NavbarItem
       {
-        text: 'Foo',
-        link: '/foo/',
+        text: "Docs",
+        link: "/usage/",
       },
       // NavbarGroup
       {
-        text: 'Group',
-        children: ['/group/foo.md', '/group/bar.md'],
+        text: "Github",
+        children: [
+          {
+            text: "Package",
+            link: "https://github.com/parsajiravand/vue3-form-wizard",
+          },
+          {
+            text: "Docs",
+            link: "https://github.com/parsajiravand/vue3-form-wizard/docs",
+          },
+        ],
       },
-      // string - page file path
-      '/bar/README.md',
-    ],
-    sidebar:[
        // NavbarItem
       {
-        text: 'Usage',
-        link: '/usage/',
-      },
-      {
-        text: 'Props',
-        link: '/props/',
-      },{
-        text: 'Slots',
-        link: '/slots/',
-      },{
-        text: 'Methods',
-        link: '/methods/',
-      },{
-        text: 'Scoped slots',
-        link: '/scoped-slots/',
-      },{
-        text: 'Demos',
-        link: '/demos/',
-      },{
-        text: 'Playground',
-        link: '/playground/',
+        text: "Npm",
+        link: "https://www.npmjs.com/package/vue3-form-wizard",
       },
     ],
-
-}),
- plugins: [
+    sidebar: [
+      // NavbarItem
+      {
+        text: "Usage",
+        link: "/usage/",
+      },
+      {
+        text: "Props",
+        link: "/props/",
+      },
+      {
+        text: "Slots",
+        link: "/slots/",
+      },
+      {
+        text: "Methods",
+        link: "/methods/",
+      },
+      {
+        text: "Scoped slots",
+        link: "/scoped-slots/",
+      },
+      {
+        text: "Demos",
+        link: "/demos/",
+      },
+      {
+        text: "Playground",
+        link: "/playground/",
+      },
+    ],
+  }),
+  plugins: [
     registerComponentsPlugin({
       components: {
-        FormWizard:path.resolve(__dirname,'../../node_modules/vue3-form-wizard/dist/source/components/FormWizard.vue'),
-        TabContent:path.resolve(__dirname,'../../node_modules/vue3-form-wizard/dist/source/components/TabContent.vue')
+        FormWizard: path.resolve(
+          __dirname,
+          "../../node_modules/vue3-form-wizard/dist/source/components/FormWizard.vue"
+        ),
+        TabContent: path.resolve(
+          __dirname,
+          "../../node_modules/vue3-form-wizard/dist/source/components/TabContent.vue"
+        ),
       },
-      componentsDir: path.resolve(__dirname, './components'),
+      componentsDir: path.resolve(__dirname, "./components"),
     }),
   ],
-
 };

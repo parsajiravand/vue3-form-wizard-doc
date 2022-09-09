@@ -1,7 +1,7 @@
 ---
 home: true
 title: Home
-heroImage: /images/hero.png
+heroImage: /images/vue-3.png
 actions:
   - text: Get Started
     link: /usage/
