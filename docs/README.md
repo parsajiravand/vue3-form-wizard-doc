@@ -1,14 +1,13 @@
 ---
 home: true
-title: Home
-heroImage: /images/vue-3.png
+title: Vue3 Form Wizard | Home
+heroImage: https://vuejs.org/images/logo.png
+heroText: Vue3 Form Wizard
+tagline: Vue3 Form Wizard is a vue based component with no external depenendcies which simplifies tab wizard management.
 actions:
   - text: Get Started
     link: /usage/
     type: primary
-  - text: Introduction
-    link: /guide/
-    type: secondary
 features:
   - title: Simplicity First
     details: Minimal setup with markdown-centered project structure helps you focus on writing.
@@ -22,7 +21,7 @@ features:
     details: Flexible plugin API, allowing plugins to provide lots of plug-and-play features for your site. 
   - title: Bundlers
     details: Default bundler is Vite, while Webpack is also supported. Choose the one you like!
-footer: MIT Licensed | Copyright © 2018-present Evan You
+footer: MIT Licensed | Copyright © 2022-present Parsa Jiravand
 ---
 
 ### As Easy as 1, 2, 3

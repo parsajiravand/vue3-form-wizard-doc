@@ -13,7 +13,8 @@ export default {
           "Vue3-form-wizard is a vue based component with no external depenendcies which simplifies tab wizard management.",
       },
     },
-    logo: "/images/vue-3.png",
+    logo: "https://vuejs.org/images/logo.png",
+
     navbar: [
       // NavbarItem
       {
