@@ -13,7 +13,15 @@
 </template>
 
 <script>
+//local registration
+import { FormWizard, TabContent } from "vue3-form-wizard";
+
 export default {
+  //component code
+  components: {
+    FormWizard,
+    TabContent,
+  },
   methods: {
     onComplete: function () {
       alert("Yay. Done!");
@@ -21,6 +29,6 @@ export default {
   },
 };
 </script>
-<style >
-    
+<style>
+  @import url('https://unpkg.com/vue3-form-wizard@0.0.9/dist/style.css');
 </style>

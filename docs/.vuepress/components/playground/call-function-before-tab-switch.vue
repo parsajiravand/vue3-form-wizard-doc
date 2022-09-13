@@ -1,15 +1,10 @@
 <template>
-  <form-wizard
-    @on-complete="onComplete"
-    title="This is a new title"
-    subtitle="And a new subtitle"
-    shape="tab"
-    back-button-text="Go back!"
-    next-button-text="Go next!"
-    finish-button-text="We're there"
-    color="#9b59b6"
-  >
-    <tab-content title="Personal details" icon="ti-user">
+  <form-wizard @on-complete="onComplete" shape="tab" color="#9b59b6">
+    <tab-content
+      title="Personal details"
+      icon="ti-user"
+      :before-change="beforeTabSwitch"
+    >
       My first tab content
     </tab-content>
     <tab-content title="Additional Info" icon="ti-settings">
@@ -24,9 +19,8 @@
 <script>
   //local registration
 import { FormWizard, TabContent } from "vue3-form-wizard";
-
 export default {
-  name: "CustomButtonAndTitleText",
+  name: "CallFunctionBeforeTabSwitch",
   //component code
   components: {
     FormWizard,
@@ -35,6 +29,10 @@ export default {
   methods: {
     onComplete: function () {
       alert("Yay. Done!");
+    },
+    beforeTabSwitch: function () {
+      alert("This is called before switchind tabs");
+      return true;
     },
   },
 };

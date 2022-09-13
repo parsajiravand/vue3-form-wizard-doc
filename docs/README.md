@@ -1,14 +1,13 @@
 ---
 home: true
-title: Home
-heroImage: /images/hero.png
+title: Vue3 Form Wizard | Home
+heroImage: https://vuejs.org/images/logo.png
+heroText: Vue3 Form Wizard
+tagline: Vue3 Form Wizard is a vue based component with no external depenendcies which simplifies tab wizard management.
 actions:
   - text: Get Started
     link: /usage/
     type: primary
-  - text: Introduction
-    link: /guide/
-    type: secondary
 features:
   - title: Simplicity First
     details: Minimal setup with markdown-centered project structure helps you focus on writing.
@@ -19,10 +18,10 @@ features:
   - title: Themes
     details: Providing a default theme out of the box. You can also choose a community theme or create your own one.
   - title: Plugins
-    details: Flexible plugin API, allowing plugins to provide lots of plug-and-play features for your site. 
+    details: Flexible plugin API, allowing plugins to provide lots of plug-and-play features for your site.
   - title: Bundlers
     details: Default bundler is Vite, while Webpack is also supported. Choose the one you like!
-footer: MIT Licensed | Copyright © 2018-present Evan You
+footer: MIT Licensed | Copyright © 2022-present Parsa Jiravand
 ---
 
 ### As Easy as 1, 2, 3
@@ -32,16 +31,8 @@ footer: MIT Licensed | Copyright © 2018-present Evan You
 
 ```bash
 # install in your project
-yarn add -D vuepress@next
+yarn add vue3-form-wizard
 
-# create a markdown file
-echo '# Hello VuePress' > README.md
-
-# start writing
-yarn vuepress dev
-
-# build to static files
-yarn vuepress build
 ```
 
   </CodeGroupItem>
@@ -50,17 +41,10 @@ yarn vuepress build
   
 ```bash
 # install in your project
-npm install -D vuepress@next
+npm install vue3-form-wizard
 
-# create a markdown file
-echo '# Hello VuePress' > README.md
-
-# start writing
-npx vuepress dev
-
-# build to static files
-npx vuepress build
 ```
 
   </CodeGroupItem>
 </CodeGroup>
+```
