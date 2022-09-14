@@ -1,12 +1,12 @@
 <template>
   <FormWizard @on-complete="onComplete">
-    <TabContent title="Personal details" icon="ti-user">
+    <TabContent title="Personal details">
       My first tab content
     </TabContent>
-    <TabContent title="Additional Info" icon="ti-settings">
+    <TabContent title="Additional Info">
       My second tab content
     </TabContent>
-    <TabContent title="Last step" icon="ti-check">
+    <TabContent title="Last step">
       Yuhuuu! This seems pretty damn simple
     </TabContent>
   </FormWizard>
@@ -30,5 +30,5 @@ export default {
 };
 </script>
 <style>
-  @import url('https://unpkg.com/vue3-form-wizard@0.0.9/dist/style.css');
+  @import url('https://unpkg.com/vue3-form-wizard/dist/style.css');
 </style>
