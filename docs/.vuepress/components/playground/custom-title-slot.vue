@@ -25,7 +25,7 @@ export default {
     TabContent,
   },
   methods: {
-    onComplete: function () {
+     onComplete() {
       alert("Yay. Done!");
     },
   },

@@ -27,10 +27,10 @@ export default {
     TabContent,
   },
   methods: {
-    onComplete: function () {
+     onComplete() {
       alert("Yay. Done!");
     },
-    beforeTabSwitch: function () {
+    beforeTabSwitch () {
       alert("This is called before switchind tabs");
       return true;
     },
