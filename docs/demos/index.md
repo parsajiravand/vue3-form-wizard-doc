@@ -8,13 +8,13 @@
 ```html
 <template>
   <form-wizard @on-complete="onComplete">
-    <tab-content title="Personal details" icon="ti-user">
+    <tab-content title="Personal details">
       My first tab content
     </tab-content>
-    <tab-content title="Additional Info" icon="ti-settings">
+    <tab-content title="Additional Info" >
       My second tab content
     </tab-content>
-    <tab-content title="Last step" icon="ti-check">
+    <tab-content title="Last step" >
       Yuhuuu! This seems pretty damn simple
     </tab-content>
   </form-wizard>
@@ -46,13 +46,13 @@ export default {
 ```html
 <template>
   <form-wizard @on-complete="onComplete" shape="square" color="#3498db">
-    <tab-content title="Personal details" icon="ti-user">
+    <tab-content title="Personal details">
       My first tab content
     </tab-content>
-    <tab-content title="Additional Info" icon="ti-settings">
+    <tab-content title="Additional Info" >
       My second tab content
     </tab-content>
-    <tab-content title="Last step" icon="ti-check">
+    <tab-content title="Last step" >
       Yuhuuu! This seems pretty damn simple
     </tab-content>
   </form-wizard>
@@ -85,15 +85,15 @@ export default {
                       :start-index="1"
                       color="#e67e22">
             <tab-content title="Personal details"
-                         icon="ti-user">
+                        >
               My first tab content
             </tab-content>
             <tab-content title="Additional Info"
-                         icon="ti-settings">
+                         >
               My second tab content
             </tab-content>
             <tab-content title="Last step"
-                         icon="ti-check">
+                         >
               Yuhuuu! This seems pretty damn simple
             </tab-content>
         </form-wizard>
@@ -133,13 +133,13 @@ export default {
     finish-button-text="We're there"
     color="#9b59b6"
   >
-    <tab-content title="Personal details" icon="ti-user">
+    <tab-content title="Personal details">
       My first tab content
     </tab-content>
-    <tab-content title="Additional Info" icon="ti-settings">
+    <tab-content title="Additional Info" >
       My second tab content
     </tab-content>
-    <tab-content title="Last step" icon="ti-check">
+    <tab-content title="Last step" >
       Yuhuuu! This seems pretty damn simple
     </tab-content>
   </form-wizard>
@@ -175,13 +175,13 @@ export default {
   <form-wizard @on-complete="onComplete" shape="tab" color="#e67e22">
     <template #title>This will replace my whole title</template>
 
-    <tab-content title="Personal details" icon="ti-user">
+    <tab-content title="Personal details">
       My first tab content
     </tab-content>
-    <tab-content title="Additional Info" icon="ti-settings">
+    <tab-content title="Additional Info" >
       My second tab content
     </tab-content>
-    <tab-content title="Last step" icon="ti-check">
+    <tab-content title="Last step" >
       Yuhuuu! This seems pretty damn simple
     </tab-content>
   </form-wizard>
@@ -217,15 +217,15 @@ export default {
   <form-wizard @on-complete="onComplete" shape="tab" color="#9b59b6">
     <tab-content
       title="Personal details"
-      icon="ti-user"
+     
       :before-change="beforeTabSwitch"
     >
       My first tab content
     </tab-content>
-    <tab-content title="Additional Info" icon="ti-settings">
+    <tab-content title="Additional Info" >
       My second tab content
     </tab-content>
-    <tab-content title="Last step" icon="ti-check">
+    <tab-content title="Last step" >
       Yuhuuu! This seems pretty damn simple
     </tab-content>
   </form-wizard>

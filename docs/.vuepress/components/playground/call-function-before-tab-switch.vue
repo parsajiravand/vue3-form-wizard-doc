@@ -37,6 +37,3 @@ export default {
   },
 };
 </script>
-<style>
-  @import url('https://unpkg.com/vue3-form-wizard@0.0.9/dist/style.css');
-</style>
