@@ -28,7 +28,8 @@ then you could use this slot. Otherwise, you could stick with the buttons slots 
 One potential usage can be that you want to have a different button when completing the wizard. Maybe you want to position it in the center, give it a different color and click event
 
 ```html
-<template slot="footer" slot-scope="props">
+
+<template v-slot:footer="props">
        <div class="wizard-footer-left">
            <wizard-button  v-if="props.activeTabIndex > 0 && !props.isLastStep" @click.native="props.prevTab()" :style="props.fillButtonStyle">Previous</wizard-button>
         </div>
@@ -42,21 +43,41 @@ One potential usage can be that you want to have a different button when complet
 This is just one example. You can add more buttons, hide or display conditionally based on the exposed properties.
 Working fiddle for the [example above](https://jsfiddle.net/bt5dhqtf/717/)
 
+:::warning
+⚠️
+  <br />
+> If you are migrating from vue2 (vue-form-wizard) and used scoped slots.
+ you must change
+  ```🛑 <template slot="footer" slot-scope="props"> ```
+  <br />
+  ```✅ <template v-slot:footer="props"> ```
+:::
+
+
 ### Step slot
 This slot can be used to disable the click event on the step or to customize the UI of each step
 One possible usage:
 ```html
-<wizard-step 
-    slot-scope="props"
-    slot="step"
-    :tab="props.tab"
-    :transition="props.transition"
-    :index="props.index">
-</wizard-step>
+<template v-slot:step="props">
+  <wizard-step 
+      :tab="props.tab"
+      :transition="props.transition"
+      :index="props.index">
+  </wizard-step>
+</template>
 ```
 #### Exposed props for the `step` slot
-- tab (the tab object which contains the tab-content component corresponding to the step) This object contains several fields such as `active, checked, shape, color` and so on. You can check how these are used [here](https://github.com/cristijora/vue-form-wizard/blob/master/src/components/WizardStep.vue): 
+- tab (the tab object which contains the tab-content component corresponding to the step) This object contains several fields such as `active, checked, shape, color` and so on. You can check how these are used [here](https://github.com/parsajiravand/vue3-form-wizard/blob/master/src/components/WizardStep.vue): 
 - index (The index of the step)
 - transition (Transition prop passed from form-wizard)
+:::warning
+⚠️
+  <br />
+> If you are migrating from vue2 (vue-form-wizard) and used scoped slots.
+ you must change
+  ```🛑 <template slot="step" slot-scope="props"> ```
+  <br />
+  ```✅ <template v-slot:step="props"> ```
+:::
 
 [Fiddle example](https://jsfiddle.net/bt5dhqtf/705/) You can notice that steps are not longer clickable.
