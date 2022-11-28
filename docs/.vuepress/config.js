@@ -50,6 +50,10 @@ export default {
         link: "/props/",
       },
       {
+        text: "Events",
+        link: "/events/",
+      },
+      {
         text: "Slots",
         link: "/slots/",
       },
