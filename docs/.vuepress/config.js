@@ -2,7 +2,6 @@
 import { registerComponentsPlugin } from "@vuepress/plugin-register-components";
 import { path } from "@vuepress/utils";
 import { defaultTheme } from "vuepress";
-import codeCopyPlugin from "@snippetors/vuepress-plugin-code-copy";
 export default {
   theme: defaultTheme({
     locales: {
@@ -79,8 +78,7 @@ export default {
   plugins: [
     registerComponentsPlugin({
       componentsDir: path.resolve(__dirname, "./components"),
-    }),
-    codeCopyPlugin({}),
+    })
   ],
   head: [
     [
