@@ -12,7 +12,7 @@ export default {
           "Vue3-form-wizard is a vue based component with no external depenendcies which simplifies tab wizard management.",
       },
     },
-    logo: "https://vuejs.org/images/logo.png",
+    logo: "https://i.postimg.cc/258CSGbV/vue3-form-wizard-icon.png",
     navbar: [
       // NavbarItem
       {
@@ -80,5 +80,16 @@ export default {
 
       componentsDir: path.resolve(__dirname, "./components"),
     }),
+  ],
+  head: [
+    ['link', { rel: "apple-touch-icon", sizes: "180x180", href: "https://i.postimg.cc/258CSGbV/vue3-form-wizard-icon.png"}],
+    ['link', { rel: "icon", type: "image/png", sizes: "32x32", href: "https://i.postimg.cc/258CSGbV/vue3-form-wizard-icon.png"}],
+    ['link', { rel: "icon", type: "image/png", sizes: "16x16", href: "https://i.postimg.cc/258CSGbV/vue3-form-wizard-icon.png"}],
+    ['link', { rel: "manifest", href: "/assets/favicons/site.webmanifest"}],
+    ['link', { rel: "mask-icon", href: "https://i.postimg.cc/258CSGbV/vue3-form-wizard-icon.png", color: "#3a0839"}],
+    ['link', { rel: "shortcut icon", href: "https://i.postimg.cc/258CSGbV/vue3-form-wizard-icon.png"}],
+    ['meta', { name: "msapplication-TileColor", content: "#3a0839"}],
+    ['meta', { name: "msapplication-config", content: "/assets/favicons/browserconfig.xml"}],
+    ['meta', { name: "theme-color", content: "#ffffff"}],
   ],
 };
