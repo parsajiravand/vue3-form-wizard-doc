@@ -1,7 +1,7 @@
 ---
 home: true
 title: Vue3 Form Wizard | Home
-heroImage: https://vuejs.org/images/logo.png
+heroImage: https://i.postimg.cc/258CSGbV/vue3-form-wizard-icon.png
 heroText: Vue3 Form Wizard
 tagline: Vue3 Form Wizard is a vue based component with no external depenendcies which simplifies tab wizard management.
 actions:

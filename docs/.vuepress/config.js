@@ -2,6 +2,7 @@
 import { registerComponentsPlugin } from "@vuepress/plugin-register-components";
 import { path } from "@vuepress/utils";
 import { defaultTheme } from "vuepress";
+import codeCopyPlugin from "@snippetors/vuepress-plugin-code-copy";
 export default {
   theme: defaultTheme({
     locales: {
@@ -12,7 +13,7 @@ export default {
           "Vue3-form-wizard is a vue based component with no external depenendcies which simplifies tab wizard management.",
       },
     },
-    logo: "https://vuejs.org/images/logo.png",
+    logo: "https://i.postimg.cc/258CSGbV/vue3-form-wizard-icon.png",
     navbar: [
       // NavbarItem
       {
@@ -29,11 +30,11 @@ export default {
           },
           {
             text: "Docs",
-            link: "https://github.com/parsajiravand/vue3-form-wizard/docs",
+            link: "https://github.com/parsajiravand/vue3-form-wizard-doc",
           },
         ],
       },
-       // NavbarItem
+      // NavbarItem
       {
         text: "Npm",
         link: "https://www.npmjs.com/package/vue3-form-wizard",
@@ -77,8 +78,60 @@ export default {
   }),
   plugins: [
     registerComponentsPlugin({
-
       componentsDir: path.resolve(__dirname, "./components"),
     }),
+    codeCopyPlugin({}),
+  ],
+  head: [
+    [
+      "link",
+      {
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: "https://i.postimg.cc/258CSGbV/vue3-form-wizard-icon.png",
+      },
+    ],
+    [
+      "link",
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "32x32",
+        href: "https://i.postimg.cc/258CSGbV/vue3-form-wizard-icon.png",
+      },
+    ],
+    [
+      "link",
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "16x16",
+        href: "https://i.postimg.cc/258CSGbV/vue3-form-wizard-icon.png",
+      },
+    ],
+    [
+      "link",
+      {
+        rel: "mask-icon",
+        href: "https://i.postimg.cc/258CSGbV/vue3-form-wizard-icon.png",
+        color: "#3a0839",
+      },
+    ],
+    [
+      "link",
+      {
+        rel: "shortcut icon",
+        href: "https://i.postimg.cc/258CSGbV/vue3-form-wizard-icon.png",
+      },
+    ],
+    ["meta", { name: "msapplication-TileColor", content: "#3a0839" }],
+    [
+      "meta",
+      {
+        name: "msapplication-config",
+        content: "/assets/favicons/browserconfig.xml",
+      },
+    ],
+    ["meta", { name: "theme-color", content: "#ffffff" }],
   ],
 };
