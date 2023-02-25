@@ -29,7 +29,7 @@ export default {
           },
           {
             text: "Docs",
-            link: "https://github.com/parsajiravand/vue3-form-wizard/docs",
+            link: "https://github.com/parsajiravand/vue3-form-wizard-doc",
           },
         ],
       },
