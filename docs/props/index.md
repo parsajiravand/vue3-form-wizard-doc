@@ -1,5 +1,7 @@
 ## Props
+
 ### Form Wizard props
+
 ```js
 props: {
   title: {
@@ -42,7 +44,7 @@ props: {
     default: '#e74c3c' //circle, border and text color
   },
   /***
-  *  Is set to current step and text when beforeChange function fails 
+  *  Is set to current step and text when beforeChange function fails
   */
   errorColor: {
     type: String,
@@ -72,7 +74,28 @@ props: {
 }
 ```
 
+### Form Wizard props :new:
+
+```js
+    /*
+     * If true, the wizard not back step on click wizard step
+     */
+    disableBackOnClickStep: {
+      type: Boolean,
+      default: false,
+    },
+    /*
+     * If true, the wizard not back step on click wizard step and back button
+     */
+    disableBack: {
+      type: Boolean,
+      default: false,
+    },
+    
+```
+
 ### Tab content props
+
 ```js
 props: {
   title: {
