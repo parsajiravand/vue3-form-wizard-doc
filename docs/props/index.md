@@ -91,7 +91,7 @@ props: {
       type: Boolean,
       default: false,
     },
-    
+
 ```
 
 ### Tab content props
@@ -123,6 +123,15 @@ props: {
    */
   beforeChange: {
     type: Function
+  },
+  /***
+   * route navigation to next step with vue-router
+   * @param {String|Object} route
+   * https://vue3-form-wizard-document.netlify.app/playground/#sample-vue3-form-wizard-router-option
+   */
+ route:{
+    type: [String, Object],
   }
+
 }
 ```
