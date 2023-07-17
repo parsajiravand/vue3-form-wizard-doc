@@ -25,6 +25,7 @@ export default {
         text: "Docs",
         link: "/usage/",
       },
+      
       // NavbarGroup
       {
         text: "Github",
@@ -76,7 +77,7 @@ export default {
         link: "/demos/",
       },
       {
-        text: process.env.GOOGLE_API_TOKEN,
+        text: "Playground",
         link: "/playground/",
       },
     ],
