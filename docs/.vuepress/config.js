@@ -2,6 +2,12 @@
 import { registerComponentsPlugin } from "@vuepress/plugin-register-components";
 import { path } from "@vuepress/utils";
 import { defaultTheme } from "vuepress";
+import { googleAnalyticsPlugin } from "@vuepress/plugin-google-analytics";
+import * as dotenv from 'dotenv'
+
+// call dotenv and it will return an Object with a parsed key
+dotenv.config()
+
 export default {
   theme: defaultTheme({
     locales: {
@@ -70,7 +76,7 @@ export default {
         link: "/demos/",
       },
       {
-        text: "Playground",
+        text: process.env.GOOGLE_API_TOKEN,
         link: "/playground/",
       },
     ],
@@ -78,7 +84,11 @@ export default {
   plugins: [
     registerComponentsPlugin({
       componentsDir: path.resolve(__dirname, "./components"),
-    })
+    }),
+    googleAnalyticsPlugin({
+      // options
+      id: process.env.GOOGLE_API_TOKEN,
+    }),
   ],
   head: [
     [
