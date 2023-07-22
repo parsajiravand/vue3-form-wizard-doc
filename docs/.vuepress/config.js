@@ -3,10 +3,10 @@ import { registerComponentsPlugin } from "@vuepress/plugin-register-components";
 import { path } from "@vuepress/utils";
 import { defaultTheme } from "vuepress";
 import { googleAnalyticsPlugin } from "@vuepress/plugin-google-analytics";
-import * as dotenv from 'dotenv'
+import * as dotenv from "dotenv";
 
 // call dotenv and it will return an Object with a parsed key
-dotenv.config()
+dotenv.config();
 
 export default {
   theme: defaultTheme({
@@ -25,7 +25,7 @@ export default {
         text: "Docs",
         link: "/usage/",
       },
-      
+
       // NavbarGroup
       {
         text: "Github",
@@ -142,5 +142,12 @@ export default {
       },
     ],
     ["meta", { name: "theme-color", content: "#ffffff" }],
+    [
+      "meta",
+      {
+        name: "google-site-verification",
+        content: "0y7LzJnAhOU_iqkHxRZDzwrZPFKDV5j6Uyf4VBUED6U",
+      },
+    ],
   ],
 };
