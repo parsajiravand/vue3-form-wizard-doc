@@ -124,6 +124,7 @@ export default {
         date: frontmatter.date || null,
         category: frontmatter["category"] || [],
         tag: frontmatter["tag"] || [],
+        image: frontmatter["image"] || null,
         excerpt:
           // support manually set excerpt through frontmatter
           typeof frontmatter["excerpt"] === "string"

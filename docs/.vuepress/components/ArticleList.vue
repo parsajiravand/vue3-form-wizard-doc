@@ -6,29 +6,41 @@
       class="article"
       @click="$router.push(path)"
     >
-      <header class="title">
+      <header class="title" v-if="info.title">
         {{
           (isTimeline ? `${new Date(info.date).toLocaleDateString()}: ` : "") +
           info.title
         }}
       </header>
       <hr />
-      <div class="article-info">
-        <span v-if="info.author" class="author">Author: {{ info.author }}</span>
-        <span v-if="info.date && !isTimeline" class="date"
-          >Date: {{ new Date(info.date).toLocaleDateString() }}</span
-        >
-        <span v-if="info.category" class="category"
-          >Category: {{ info.category.join(", ") }}</span
-        >
-        <span v-if="info.tag" class="tag">Tag: {{ info.tag.join(", ") }}</span>
+      <div style="display: flex; flex-direction: row">
+        <!-- add sample image -->
+        <div v-if="info.image">
+          <img src="@assets/vue-3.png" alt="sample image" />
+        </div>
+        <div class="article-info">
+          <span v-if="info.author" class="author"
+            >Author: {{ info.author }}</span
+          >
+          <span v-if="info.date && !isTimeline" class="date"
+            >Date: {{ new Date(info.date).toLocaleDateString() }}</span
+          >
+          <span v-if="info.category" class="category"
+            >Category: {{ info.category.join(", ") }}</span
+          >
+          <span v-if="info.tag" class="tag"
+            >Tag: {{ info.tag.join(", ") }}</span
+          >
+          <div v-if="info.excerpt" class="excerpt" v-html="info.excerpt" />
+        </div>
       </div>
-      <div v-if="info.excerpt" class="excerpt" v-html="info.excerpt" />
     </article>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { withBase } from '@vuepress/client'
+import { ref } from 'vue';
 interface Article {
   path: string;
   info: {
@@ -38,6 +50,7 @@ interface Article {
     category?: string[];
     tag?: string[];
     excerpt?: string;
+    image?: string;
   };
 }
 
@@ -46,8 +59,12 @@ withDefaults(
     items: Article[];
     isTimeline: boolean;
   }>(),
-  { items: () => [] },
+  { items: () => [] }
 );
+const logoPath = ref('/vue-3.png')
+const imageUrl = (path) => {
+  return withBase(`../../images/blog/${path}`);
+};
 </script>
 <style lang="scss">
 @use "@vuepress/theme-default/styles/mixins";
@@ -119,11 +136,49 @@ withDefaults(
 
   .article-info {
     display: flex;
-    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: space-between;
 
-    > span {
-      margin-right: 0.5em;
-      line-height: 1.8;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+
+    border-top: 1px solid var(--c-border);
+
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+
+    @media (max-width: 419px) {
+      flex-direction: column;
+    }
+
+    .author {
+      margin-bottom: 0.5rem;
+    }
+
+    .date {
+      margin-bottom: 0.5rem;
+    }
+
+    .category {
+      margin-bottom: 0.5rem;
+    }
+
+    .tag {
+      margin-bottom: 0.5rem;
+    }
+
+    .excerpt {
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+
+      border-top: 1px solid var(--c-border);
+
+      font-size: 0.9rem;
+      line-height: 1.5rem;
+
+      @media (max-width: 419px) {
+        display: none;
+      }
     }
   }
 
