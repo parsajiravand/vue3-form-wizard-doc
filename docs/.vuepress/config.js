@@ -45,6 +45,27 @@ export default {
         text: "Npm",
         link: "https://www.npmjs.com/package/vue3-form-wizard",
       },
+      {
+        text: "Other Packages",
+        children: [
+          {
+            text: "React Form Wizard",
+            link: "https://github.com/parsajiravand/react-form-wizard",
+          },
+          {
+            text: "Vue Client Recaptcha",
+            link: "https://github.com/parsajiravand/vue-client-recaptcha",
+          },
+          {
+            text: "Helping Js",
+            link: "https://github.com/parsajiravand/helping-js",
+          },
+          {
+            text: "Simple Form Data",
+            link: "https://github.com/parsajiravand/simple-form-data"
+          }
+        ],
+      },
     ],
     sidebar: [
       // NavbarItem
