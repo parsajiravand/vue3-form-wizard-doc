@@ -65,8 +65,8 @@ export default {
         link: "/slots/",
       },
       {
-        text: "Methods",
-        link: "/methods/",
+        text: "Refs",
+        link: "/refs/",
       },
       {
         text: "Scoped slots",
