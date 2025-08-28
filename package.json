@@ -2,7 +2,7 @@
   "name": "vue3-form-wizard-docs",
   "private": false,
   "author": "parsa jiravand",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "docs for vue3-form-wizard .",
   "scripts": {
     "docs:dev": "vuepress dev docs",
@@ -15,6 +15,6 @@
   },
   "dependencies": {
     "dotenv": "^16.3.1",
-    "vue3-form-wizard": "^0.1.9"
+    "vue3-form-wizard": "^0.2.5"
   }
 }
