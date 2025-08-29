@@ -15,6 +15,6 @@
   },
   "dependencies": {
     "dotenv": "^16.3.1",
-    "vue3-form-wizard": "^0.2.5"
+    "vue3-form-wizard": "^0.2.9"
   }
 }
