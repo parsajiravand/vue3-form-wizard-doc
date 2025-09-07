@@ -63,7 +63,19 @@ export default {
           {
             text: "Simple Form Data",
             link: "https://github.com/parsajiravand/simple-form-data"
-          }
+          },
+          {
+            text: "Vue Advanced Screen Recorder",
+            link: "https://github.com/parsajiravand/vue-advanced-screen-recorder",
+          },
+          {
+            text: "Vue Camera Kit",
+            link: "https://github.com/parsajiravand/vue-camera-kit",
+          },
+          {
+            text: "Vue Heic Image",
+            link: "https://github.com/parsajiravand/vue-heic-image",
+          },
         ],
       },
     ],
@@ -92,6 +104,10 @@ export default {
       {
         text: "Scoped slots",
         link: "/scoped-slots/",
+      },
+      {
+        text: "Router",
+        link: "/router/",
       },
       {
         text: "Demos",

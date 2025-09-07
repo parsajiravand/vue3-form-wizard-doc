@@ -48,6 +48,10 @@ components: {
    </tab-content>
 </form-wizard>
 ```
+## Router Integration
+
+Vue3 Form Wizard supports automatic route synchronization with Vue Router. For detailed setup and usage instructions, see the [Router Integration](/router/) documentation.
+
 ## Compatibility
 
 vue3-form-wizard works with Vue > 3.x
