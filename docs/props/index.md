@@ -127,7 +127,7 @@ props: {
   /***
    * route navigation to next step with vue-router
    * @param {String|Object} route
-   * https://vue3-form-wizard-document.netlify.app/playground/#sample-vue3-form-wizard-router-option
+   * https://codesandbox.io/p/sandbox/7ly4dx
    */
  route:{
     type: [String, Object],
