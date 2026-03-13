@@ -11,6 +11,16 @@ When you provide a `schema` prop and no `<tab-content>` children, FormWizard run
 - Use `validate` to block navigation with custom error messages
 - Share wizard data with `v-model` and `schema-components`
 
+## Demos
+
+Try the schema mode demos on the [Demos](/demos/) page:
+
+- [Schema: Basic](/demos/#schema-basic) — Simple two-step wizard with SFC components
+- [Schema: Conditional Steps](/demos/#schema-conditional-steps) — Steps shown/hidden via `condition`
+- [Schema: Async Validation](/demos/#schema-async-validation) — Block navigation with `validate` and error messages
+- [Schema: Render Function](/demos/#schema-render-function) — Step components as plain render functions
+- [Schema: defineComponent](/demos/#schema-define-component) — Step components using `defineComponent`
+
 ## Basic Usage
 
 ```vue
@@ -50,8 +60,39 @@ const handleComplete = () => alert('Done!')
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| `initialData` | `WizardData` | Initial data for the wizard |
+| `initialData` | `WizardData` | Initial data for the wizard (see below) |
 | `steps` | `FormWizardStep[]` | Array of step definitions |
+
+### initialData
+
+`initialData` is the **seed state** for the wizard. It defines the shape and starting values of the shared data that all step components read and update.
+
+| Aspect | Details |
+| ------ | ------- |
+| **Purpose** | Provides the initial values for `data` and `v-model`. All steps share this object. |
+| **Type** | Plain object with string keys. `WizardData` is `Record<string, any>`. |
+| **Usage** | Step components receive `data` (current state) and `updateData` (to mutate it). Changes are merged into the wizard data and emitted via `update:modelValue`. |
+| **Sync with v-model** | If you pass `v-model="wizardData"`, FormWizard keeps `initialData` and `wizardData` in sync. Use `initialData` in the schema and `ref(schema.initialData)` or equivalent for the bound value. |
+| **Reactivity** | When `initialData` values change (e.g. via `updateData`), `condition` is re-run and step components get updated `data` props. |
+
+**Example**
+
+```js
+const initial = { plan: 'basic', email: '', agreedToTerms: false }
+
+const schema = {
+  initialData: initial,
+  steps: [
+    { id: 'plan', title: 'Plan', component: 'PlanStep' },     // reads/writes data.plan
+    { id: 'contact', title: 'Contact', component: 'ContactStep' },  // reads/writes data.email
+    { id: 'review', title: 'Review', component: 'ReviewStep' },     // reads all
+  ],
+}
+
+const wizardData = ref({ ...initial })
+```
+
+Bind with `v-model="wizardData"` to read or reset the data from the parent (e.g. after submit or when reopening the wizard).
 
 ### FormWizardStep
 
@@ -81,7 +122,7 @@ Both `condition` and `validate` receive a context object:
 
 ## Step Component Props
 
-Each step component receives:
+Each step component receives (see [Schema: Basic](/demos/#schema-basic) and [Schema: Render Function](/demos/#schema-render-function) for examples):
 
 | Prop | Type | Description |
 | ---- | ---- | ----------- |
@@ -112,7 +153,7 @@ const onPlanChange = (e) => {
 
 ## Conditional Steps
 
-Use `condition` to show steps only when criteria are met:
+Use `condition` to show steps only when criteria are met. See [Schema: Conditional Steps](/demos/#schema-conditional-steps) demo.
 
 ```js
 const schema = {
@@ -132,7 +173,7 @@ const schema = {
 
 ## Async Validation
 
-`validate` can be async. Return a string to show an error message:
+`validate` can be async. Return a string to show an error message. See [Schema: Async Validation](/demos/#schema-async-validation) demo.
 
 ```js
 {

@@ -86,7 +86,7 @@ export default {
         link: "/usage/",
       },
       {
-        text: "Schema",
+        text: "Schema (V1)",
         link: "/schema/",
       },
       {
