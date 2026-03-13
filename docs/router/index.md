@@ -59,13 +59,14 @@ Add `route` prop to your `tab-content` components:
 ✅ **Browser History**: Back/forward buttons work correctly
 ✅ **Deep Linking**: Shareable URLs for specific wizard steps
 
-## Route Types
+## Route Types <Badge text="v1" type="info" />
 
 The `route` prop accepts:
 
-- **String**: `route="/step1"` - Direct path
-- **Object**: `route="{ name: 'step1', params: { id: 1 } }"` - Named routes with params
+- **String**: `route="/step1"` — Direct path
+- **Object**: `route="{ name: 'step1', params: { id: 1 } }"` — Named routes with params (location objects)
 
+Route objects are resolved via `router.resolve` to compare the effective `fullPath`. Redundant navigations are avoided and duplicate-navigation errors are ignored. When `vue-router` is not installed, route watching becomes a no-op (with a dev-only warning).
 
 - RouterTest component showing current route
 - Navigation buttons for testing

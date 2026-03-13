@@ -1,5 +1,15 @@
 ## Props
 
+### Form Wizard props (Schema mode) <Badge text="v1" type="info" />
+
+When using [Schema mode](/schema/):
+
+| Prop | Type | Description |
+| ---- | ---- | ----------- |
+| `schema` | `FormWizardSchema` | Declarative step config with `initialData` and `steps` |
+| `schemaComponents` | `Record<string, Component>` | Map of step `component` keys to Vue components |
+| `modelValue` / `v-model` | `WizardData` | Shared wizard data; binds to `schema.initialData` |
+
 ### Form Wizard props
 
 ```js
@@ -125,11 +135,12 @@ props: {
     type: Function
   },
   /***
-   * route navigation to next step with vue-router
+   * Route navigation to next step with vue-router.
+   * Supports string paths (e.g. route="/step1") and route objects (e.g. route="{ name: 'step1', params: { id: 1 } }").
    * @param {String|Object} route
    * https://codesandbox.io/p/sandbox/7ly4dx
    */
- route:{
+  route: {
     type: [String, Object],
   }
 

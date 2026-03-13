@@ -616,6 +616,137 @@ export default {
 ```
 :::
 
+## Schema mode <Badge text="new" type="tip" /> <Badge text="v1" type="info" />
+
+Schema mode lets you define steps declaratively with `schema`, `schema-components`, and `v-model`. See the [Schema documentation](/schema/) for details.
+
+### Schema: Basic
+
+&nbsp;
+<playground-schema-basic />
+&nbsp;
+
+::: details View Source 💻
+
+```vue
+<template>
+  <FormWizard
+    title="Schema: Basic"
+    :schema="schema"
+    :schema-components="schemaComponents"
+    v-model="schemaData"
+    color="#9b59b6"
+    @on-complete="onComplete"
+  />
+</template>
+
+<script setup>
+import { ref } from "vue";
+import FormWizard from "vue3-form-wizard";
+import "vue3-form-wizard/dist/style.css";
+
+const schema = {
+  initialData: { plan: "basic" },
+  steps: [
+    { id: "intro", title: "Intro", component: "IntroStep" },
+    { id: "review", title: "Review", component: "ReviewStep" },
+  ],
+};
+
+const schemaComponents = { IntroStep, ReviewStep };
+const schemaData = ref({ plan: "basic" });
+const onComplete = () => alert("Done!");
+</script>
+```
+:::
+
+### Schema: Conditional Steps
+
+Shows steps based on `condition`. The Premium step appears only when plan is "premium".
+
+&nbsp;
+<playground-schema-conditional />
+&nbsp;
+
+::: details View Source 💻
+
+```vue
+<template>
+  <FormWizard
+    title="Schema: Conditional Steps"
+    :schema="schema"
+    :schema-components="schemaComponents"
+    v-model="schemaData"
+    @on-complete="onComplete"
+  />
+</template>
+
+<script setup>
+const schema = {
+  initialData: { plan: "basic" },
+  steps: [
+    { id: "intro", title: "Intro", component: "IntroStep" },
+    {
+      id: "premium",
+      title: "Premium",
+      component: "PremiumStep",
+      condition: ({ data }) => data.plan === "premium",
+    },
+    {
+      id: "review",
+      title: "Review",
+      component: "ReviewStep",
+      validate: ({ data }) => (data.plan ? true : "Select a plan"),
+    },
+  ],
+};
+</script>
+```
+:::
+
+### Schema: Async Validation
+
+Use `validate` to block navigation and show custom error messages.
+
+&nbsp;
+<playground-schema-validation />
+&nbsp;
+
+::: details View Source 💻
+
+```vue
+<template>
+  <FormWizard
+    title="Schema: Async Validation"
+    :schema="schema"
+    :schema-components="schemaComponents"
+    v-model="schemaData"
+    @on-complete="onComplete"
+  />
+</template>
+
+<script setup>
+const schema = {
+  initialData: { email: "" },
+  steps: [
+    {
+      id: "email",
+      title: "Email",
+      component: "EmailStep",
+      validate: ({ data }) => {
+        const ok = /^[^@]+@[^@]+\.\w+$/.test(data.email || "");
+        return ok ? true : "Enter a valid email";
+      },
+    },
+    { id: "done", title: "Done", component: "DoneStep" },
+  ],
+};
+</script>
+```
+:::
+
+---
+
 ## Async validation with error message
 
 #### `before-change` `beforeChange (): boolean | Promise<boolean>` can accept a promise that resolves with a boolean. Resolving with a truthy value, will trigger the navigation to next step. Rejecting with a message, will set an internal message that can be handled and displayed if needed.

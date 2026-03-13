@@ -2,13 +2,20 @@
 
 Form-wizard exposes multiple scoped slots which can be used to customize some parts of the wizard. Usage example and implementation details are presented in [0.6.2 release](https://github.com/cristijora/vue-form-wizard/releases/tag/v0.6.2)
 
-Since [0.6.4](https://github.com/cristijora/vue-form-wizard/releases/tag/v0.6.4), button slots can be also used as scoped slots and have the following methods/properties exposed
+Since [0.6.4](https://github.com/cristijora/vue-form-wizard/releases/tag/v0.6.4), button slots can be also used as scoped slots and have the following methods/properties exposed:
 
-* **nextTab** // will go to the next tab/step when called 
-* **prevTab** //will got to the prev tab/step when called
-* **activeTabIndex** // current active tab index 
-* **isLastStep** // boolean to tell whether it's the last step or not
-* **fillButtonStyle** // object with styles for wizard-buttons (contains background and color passed through wizard props)
+* **nextTab** — go to the next tab/step when called
+* **prevTab** — go to the previous tab/step when called
+* **activeTabIndex** — current active tab index
+* **isLastStep** — boolean to tell whether it's the last step or not
+* **fillButtonStyle** — object with styles for wizard-buttons (contains background and color passed through wizard props)
+
+### Slot props added in v1 <Badge text="v1" type="info" />
+
+* **tabs** — the internal tab array
+* **tabCount** — total number of tabs
+* **wizardData** — reactive wizard data (used by schema mode; also available to slot consumers)
+* **updateWizardData** — function to update wizard data and emit `update:modelValue`
 
 These properties apply to the following slots: 
 
