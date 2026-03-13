@@ -86,6 +86,10 @@ export default {
         link: "/usage/",
       },
       {
+        text: "Schema (V1)",
+        link: "/schema/",
+      },
+      {
         text: "Props",
         link: "/props/",
       },
@@ -116,6 +120,10 @@ export default {
       {
         text: "Playground",
         link: "/playground/",
+      },
+      {
+        text: "Changelog",
+        link: "/changelog/",
       },
     ],
   }),

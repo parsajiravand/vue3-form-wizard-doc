@@ -1,8 +1,14 @@
 A dynamic form wizard to split your forms easier
 
-vue3-form-wizard is a vue based component with **no external depenendcies** which simplifies tab wizard management and allows you to focus on the functional part of your app rather than
-wasting time on details. Just forget about id's, external scripts and jQuery dependencies
+vue3-form-wizard is a vue based component with **no external dependencies** which simplifies tab wizard management and allows you to focus on the functional part of your app rather than wasting time on details.
 
+## Version 1 Highlights <Badge text="v1" type="info" />
+
+- **Schema mode**: Declarative steps with `schema`, `condition`, `validate`, and `v-model` — see [Schema](/schema/)
+- **Classic mode**: Slot-based steps with `<tab-content>` (unchanged)
+- **Router**: Supports string paths and route objects; URL sync when vue-router is installed
+- **Accessibility**: ARIA roles, keyboard navigation, unified IDs
+- **Richer slot props**: `tabs`, `tabCount`, `wizardData`, `updateWizardData`
 
 # Usage
 
@@ -51,6 +57,10 @@ components: {
 ## Router Integration
 
 Vue3 Form Wizard supports automatic route synchronization with Vue Router. For detailed setup and usage instructions, see the [Router Integration](/router/) documentation.
+
+## Schema Mode
+
+In v1, you can define steps declaratively with a `schema` prop. See the [Schema](/schema/) documentation for the full API.
 
 ## Compatibility
 

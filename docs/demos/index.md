@@ -616,6 +616,272 @@ export default {
 ```
 :::
 
+## Schema mode (V1) :new:
+
+Schema mode lets you define steps declaratively with `schema`, `schema-components`, and `v-model`. See the [Schema documentation](/schema/) for details.
+
+### Schema: Basic
+
+&nbsp;
+<playground-schema-basic />
+&nbsp;
+
+::: details View Source 💻
+
+```vue
+<template>
+  <FormWizard
+    title="Schema: Basic"
+    :schema="schema"
+    :schema-components="schemaComponents"
+    v-model="schemaData"
+    color="#9b59b6"
+    @on-complete="onComplete"
+  />
+</template>
+
+<script setup>
+import { ref } from "vue";
+import { FormWizard } from "vue3-form-wizard";
+import "vue3-form-wizard/dist/style.css";
+
+const schema = {
+  initialData: { plan: "basic" },
+  steps: [
+    { id: "intro", title: "Intro", component: "IntroStep" },
+    { id: "review", title: "Review", component: "ReviewStep" },
+  ],
+};
+
+const schemaComponents = { IntroStep, ReviewStep };
+const schemaData = ref({ plan: "basic" });
+const onComplete = () => alert("Done!");
+</script>
+```
+:::
+
+### Schema: Conditional Steps
+
+Shows steps based on `condition`. The Premium step appears only when plan is "premium".
+
+&nbsp;
+<playground-schema-conditional />
+&nbsp;
+
+::: details View Source 💻
+
+```vue
+<template>
+  <FormWizard
+    title="Schema: Conditional Steps"
+    :schema="schema"
+    :schema-components="schemaComponents"
+    v-model="schemaData"
+    @on-complete="onComplete"
+  />
+</template>
+
+<script setup>
+import { FormWizard } from "vue3-form-wizard";
+import 'vue3-form-wizard/dist/style.css'
+
+import IntroStep from "./schema-steps/IntroStep.vue";
+import PremiumStep from "./schema-steps/PremiumStep.vue";
+import ReviewStep from "./schema-steps/ReviewStep.vue";
+
+const schema = {
+  initialData: { plan: "basic" },
+  steps: [
+    { id: "intro", title: "Intro", component: "IntroStep" },
+    {
+      id: "premium",
+      title: "Premium",
+      component: "PremiumStep",
+      condition: ({ data }) => data.plan === "premium",
+    },
+    {
+      id: "review",
+      title: "Review",
+      component: "ReviewStep",
+      validate: ({ data }) => (data.plan ? true : "Select a plan"),
+    },
+  ],
+};
+
+const schemaComponents = { IntroStep, PremiumStep, ReviewStep };
+const schemaData = ref({ plan: "basic" });
+const onComplete = () => alert("Done!");
+</script>
+```
+:::
+
+### Schema: Async Validation
+
+Use `validate` to block navigation and show custom error messages.
+
+&nbsp;
+<playground-schema-validation />
+&nbsp;
+
+::: details View Source 💻
+
+```vue
+<template>
+  <FormWizard
+    title="Schema: Async Validation"
+    :schema="schema"
+    :schema-components="schemaComponents"
+    v-model="schemaData"
+    @on-complete="onComplete"
+  />
+</template>
+
+<script setup>
+import { ref } from "vue";
+import { FormWizard } from "vue3-form-wizard";
+import 'vue3-form-wizard/dist/style.css'
+
+import EmailStep from "./schema-steps/EmailStep.vue";
+import DoneStep from "./schema-steps/DoneStep.vue";
+
+const schema = {
+  initialData: { email: "" },
+  steps: [
+    {
+      id: "email",
+      title: "Email",
+      component: "EmailStep",
+      validate: ({ data }) => {
+        const ok = /^[^@]+@[^@]+\.\w+$/.test(data.email || "");
+        return ok ? true : "Enter a valid email";
+      },
+    },
+    { id: "done", title: "Done", component: "DoneStep" },
+  ],
+};
+
+const schemaComponents = { EmailStep, DoneStep };
+const schemaData = ref({ email: "" });
+const onComplete = () => alert("Done!");
+</script>
+```
+:::
+
+### Schema: Render Function
+
+Step components defined as plain render functions (functional components using `h()`).
+
+&nbsp;
+<playground-schema-render-function />
+&nbsp;
+
+::: details View Source 💻
+
+```vue
+<template>
+  <FormWizard
+    title="Schema: Render Function"
+    :schema="schema"
+    :schema-components="schemaComponents"
+    v-model="schemaData"
+    @on-complete="onComplete"
+  />
+</template>
+
+<script setup>
+import { ref, h } from "vue";
+import { FormWizard } from "vue3-form-wizard";
+import 'vue3-form-wizard/dist/style.css'
+
+const StepA = (props) =>
+  h("div", [
+    h("h2", "Step A"),
+    h("input", {
+      value: props.data.value,
+      onInput: (e) => props.updateData({ value: e.target.value }),
+    }),
+  ]);
+
+const StepB = (props) => h("div", [h("h2", "Step B"), h("p", props.data.value)]);
+
+const schema = {
+  initialData: { value: "" },
+  steps: [
+    { id: "a", title: "Input", component: "StepA" },
+    { id: "b", title: "Result", component: "StepB" },
+  ],
+};
+
+const schemaComponents = { StepA, StepB };
+const schemaData = ref({ value: "" });
+</script>
+```
+:::
+
+### Schema: defineComponent
+
+Step components defined with `defineComponent` and `setup` returning a render function.
+
+&nbsp;
+<playground-schema-define-component />
+&nbsp;
+
+::: details View Source 💻
+
+```vue
+<template>
+  <FormWizard
+    title="Schema: defineComponent"
+    :schema="schema"
+    :schema-components="schemaComponents"
+    v-model="schemaData"
+    @on-complete="onComplete"
+  />
+</template>
+
+<script setup>
+import { ref, defineComponent, h } from "vue";
+import { FormWizard } from "vue3-form-wizard";
+import 'vue3-form-wizard/dist/style.css'
+
+const NameStep = defineComponent({
+  name: "NameStep",
+  props: { data: Object, updateData: Function },
+  setup(props) {
+    return () =>
+      h("div", [
+        h("input", {
+          value: props.data.name,
+          onInput: (e) => props.updateData({ name: e.target.value }),
+        }),
+      ]);
+  },
+});
+
+const SummaryStep = defineComponent({
+  name: "SummaryStep",
+  props: { data: Object, updateData: Function },
+  setup(props) {
+    return () => h("div", [h("p", "Hello, " + (props.data.name || "Guest"))]);
+  },
+});
+
+const schema = {
+  initialData: { name: "" },
+  steps: [
+    { id: "name", title: "Name", component: "NameStep" },
+    { id: "summary", title: "Summary", component: "SummaryStep" },
+  ],
+};
+
+const schemaComponents = { NameStep, SummaryStep };
+const schemaData = ref({ name: "" });
+</script>
+```
+:::
+
+---
+
 ## Async validation with error message
 
 #### `before-change` `beforeChange (): boolean | Promise<boolean>` can accept a promise that resolves with a boolean. Resolving with a truthy value, will trigger the navigation to next step. Rejecting with a message, will set an internal message that can be handled and displayed if needed.
