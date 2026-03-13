@@ -10,47 +10,12 @@
 </template>
 
 <script setup>
-import { ref, defineComponent, h } from "vue";
-import FormWizard from "vue3-form-wizard";
+import { ref } from "vue";
+import {FormWizard} from "vue3-form-wizard";
 import "vue3-form-wizard/dist/style.css";
-
-const IntroStep = defineComponent({
-  name: "IntroStep",
-  props: { data: { type: Object, required: true }, updateData: { type: Function, required: true } },
-  setup(props) {
-    return () =>
-      h("div", [
-        h("h2", "Choose plan"),
-        h("p", "Select a plan to continue. Premium plan shows an extra step."),
-        h("label", [
-          "Plan: ",
-          h("select", {
-            value: props.data.plan,
-            onChange: (e) => props.updateData({ plan: e.target.value }),
-          }, [
-            h("option", { value: "basic" }, "Basic"),
-            h("option", { value: "premium" }, "Premium"),
-          ]),
-        ]),
-      ]);
-  },
-});
-
-const PremiumStep = defineComponent({
-  name: "PremiumStep",
-  props: { data: { type: Object, required: true }, updateData: { type: Function, required: true } },
-  setup() {
-    return () => h("div", [h("h2", "Premium features"), h("p", [h("strong", "Premium"), " plan – extra configuration."])]);
-  },
-});
-
-const ReviewStep = defineComponent({
-  name: "ReviewStep",
-  props: { data: { type: Object, required: true }, updateData: { type: Function, required: true } },
-  setup(props) {
-    return () => h("div", [h("h2", "Review"), h("pre", JSON.stringify(props.data, null, 2))]);
-  },
-});
+import IntroStep from "./schema-steps/IntroStep.vue";
+import PremiumStep from "./schema-steps/PremiumStep.vue";
+import ReviewStep from "./schema-steps/ReviewStep.vue";
 
 const schema = {
   initialData: { plan: "basic" },

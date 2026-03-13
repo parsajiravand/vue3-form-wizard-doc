@@ -11,35 +11,11 @@
 </template>
 
 <script setup>
-import { ref, defineComponent, h } from "vue";
-import FormWizard from "vue3-form-wizard";
+import { ref } from "vue";
+import {FormWizard} from "vue3-form-wizard";
 import "vue3-form-wizard/dist/style.css";
-
-const EmailStep = defineComponent({
-  name: "EmailStep",
-  props: { data: { type: Object, required: true }, updateData: { type: Function, required: true } },
-  setup(props) {
-    return () =>
-      h("div", [
-        h("h2", "Enter email"),
-        h("input", {
-          type: "email",
-          value: props.data.email,
-          onInput: (e) => props.updateData({ email: e.target.value }),
-          placeholder: "email@example.com",
-          style: "padding:8px;width:100%;max-width:280px;",
-        }),
-      ]);
-  },
-});
-
-const DoneStep = defineComponent({
-  name: "DoneStep",
-  props: { data: { type: Object, required: true }, updateData: { type: Function, required: true } },
-  setup(props) {
-    return () => h("div", [h("h2", "All set"), h("p", "Email: " + (props.data.email || "(none)"))]);
-  },
-});
+import EmailStep from "./schema-steps/EmailStep.vue";
+import DoneStep from "./schema-steps/DoneStep.vue";
 
 const schema = {
   initialData: { email: "" },
