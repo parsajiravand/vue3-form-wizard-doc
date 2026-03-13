@@ -616,7 +616,7 @@ export default {
 ```
 :::
 
-## Schema mode <Badge text="new" type="tip" /> <Badge text="v1" type="info" />
+## Schema mode (V1) :new:
 
 Schema mode lets you define steps declaratively with `schema`, `schema-components`, and `v-model`. See the [Schema documentation](/schema/) for details.
 
@@ -642,7 +642,7 @@ Schema mode lets you define steps declaratively with `schema`, `schema-component
 
 <script setup>
 import { ref } from "vue";
-import FormWizard from "vue3-form-wizard";
+import { FormWizard } from "vue3-form-wizard";
 import "vue3-form-wizard/dist/style.css";
 
 const schema = {
@@ -682,6 +682,13 @@ Shows steps based on `condition`. The Premium step appears only when plan is "pr
 </template>
 
 <script setup>
+import { FormWizard } from "vue3-form-wizard";
+import 'vue3-form-wizard/dist/style.css'
+
+import IntroStep from "./schema-steps/IntroStep.vue";
+import PremiumStep from "./schema-steps/PremiumStep.vue";
+import ReviewStep from "./schema-steps/ReviewStep.vue";
+
 const schema = {
   initialData: { plan: "basic" },
   steps: [
@@ -700,6 +707,10 @@ const schema = {
     },
   ],
 };
+
+const schemaComponents = { IntroStep, PremiumStep, ReviewStep };
+const schemaData = ref({ plan: "basic" });
+const onComplete = () => alert("Done!");
 </script>
 ```
 :::
@@ -726,6 +737,13 @@ Use `validate` to block navigation and show custom error messages.
 </template>
 
 <script setup>
+import { ref } from "vue";
+import { FormWizard } from "vue3-form-wizard";
+import 'vue3-form-wizard/dist/style.css'
+
+import EmailStep from "./schema-steps/EmailStep.vue";
+import DoneStep from "./schema-steps/DoneStep.vue";
+
 const schema = {
   initialData: { email: "" },
   steps: [
@@ -741,6 +759,123 @@ const schema = {
     { id: "done", title: "Done", component: "DoneStep" },
   ],
 };
+
+const schemaComponents = { EmailStep, DoneStep };
+const schemaData = ref({ email: "" });
+const onComplete = () => alert("Done!");
+</script>
+```
+:::
+
+### Schema: Render Function
+
+Step components defined as plain render functions (functional components using `h()`).
+
+&nbsp;
+<playground-schema-render-function />
+&nbsp;
+
+::: details View Source 💻
+
+```vue
+<template>
+  <FormWizard
+    title="Schema: Render Function"
+    :schema="schema"
+    :schema-components="schemaComponents"
+    v-model="schemaData"
+    @on-complete="onComplete"
+  />
+</template>
+
+<script setup>
+import { ref, h } from "vue";
+import { FormWizard } from "vue3-form-wizard";
+import 'vue3-form-wizard/dist/style.css'
+
+const StepA = (props) =>
+  h("div", [
+    h("h2", "Step A"),
+    h("input", {
+      value: props.data.value,
+      onInput: (e) => props.updateData({ value: e.target.value }),
+    }),
+  ]);
+
+const StepB = (props) => h("div", [h("h2", "Step B"), h("p", props.data.value)]);
+
+const schema = {
+  initialData: { value: "" },
+  steps: [
+    { id: "a", title: "Input", component: "StepA" },
+    { id: "b", title: "Result", component: "StepB" },
+  ],
+};
+
+const schemaComponents = { StepA, StepB };
+const schemaData = ref({ value: "" });
+</script>
+```
+:::
+
+### Schema: defineComponent
+
+Step components defined with `defineComponent` and `setup` returning a render function.
+
+&nbsp;
+<playground-schema-define-component />
+&nbsp;
+
+::: details View Source 💻
+
+```vue
+<template>
+  <FormWizard
+    title="Schema: defineComponent"
+    :schema="schema"
+    :schema-components="schemaComponents"
+    v-model="schemaData"
+    @on-complete="onComplete"
+  />
+</template>
+
+<script setup>
+import { ref, defineComponent, h } from "vue";
+import { FormWizard } from "vue3-form-wizard";
+import 'vue3-form-wizard/dist/style.css'
+
+const NameStep = defineComponent({
+  name: "NameStep",
+  props: { data: Object, updateData: Function },
+  setup(props) {
+    return () =>
+      h("div", [
+        h("input", {
+          value: props.data.name,
+          onInput: (e) => props.updateData({ name: e.target.value }),
+        }),
+      ]);
+  },
+});
+
+const SummaryStep = defineComponent({
+  name: "SummaryStep",
+  props: { data: Object, updateData: Function },
+  setup(props) {
+    return () => h("div", [h("p", "Hello, " + (props.data.name || "Guest"))]);
+  },
+});
+
+const schema = {
+  initialData: { name: "" },
+  steps: [
+    { id: "name", title: "Name", component: "NameStep" },
+    { id: "summary", title: "Summary", component: "SummaryStep" },
+  ],
+};
+
+const schemaComponents = { NameStep, SummaryStep };
+const schemaData = ref({ name: "" });
 </script>
 ```
 :::
