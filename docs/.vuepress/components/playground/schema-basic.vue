@@ -1,6 +1,11 @@
 <template>
-  <FormWizard title="Schema: Basic" :schema="schema" :schema-components="schemaComponents" v-model="schemaData"
-    @on-complete="onComplete" />
+  <FormWizard
+    title="Schema: Basic"
+    :schema="schema"
+    :schema-components="schemaComponents"
+    v-model="schemaData"
+    @on-complete="onComplete"
+  />
 </template>
 
 <script setup>
