@@ -1,6 +1,12 @@
 <template>
-  <FormWizard title="Schema: defineComponent" :schema="schema" :schema-components="schemaComponents"
-    v-model="schemaData" color="#8e44ad" @on-complete="onComplete" />
+  <FormWizard
+    title="Schema: defineComponent"
+    :schema="schema"
+    :schema-components="schemaComponents"
+    v-model="schemaData"
+    color="#8e44ad"
+    @on-complete="onComplete"
+  />
 </template>
 
 <script setup>
@@ -40,7 +46,8 @@ const SummaryStep = defineComponent({
     return () =>
       h("div", [
         h("h2", "Summary"),
-        h("p", ["Hello, ", h("strong", props.data.name || "Guest"), "!"])]);
+        h("p", ["Hello, ", h("strong", props.data.name || "Guest"), "!"]),
+      ]);
   },
 });
 

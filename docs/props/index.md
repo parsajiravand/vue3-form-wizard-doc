@@ -101,6 +101,21 @@ props: {
       type: Boolean,
       default: false,
     },
+    /*
+     * Enable RTL layout for wizard content (v1.1.1)
+     */
+    rtl: {
+      type: Boolean,
+      default: false,
+    },
+    /*
+     * When true (and rtl is enabled), also reverses
+     * horizontal steps, progress bar, and footer buttons (v1.1.1)
+     */
+    reverseHorizontal: {
+      type: Boolean,
+      default: false,
+    },
 
 ```
 

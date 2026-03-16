@@ -616,6 +616,111 @@ export default {
 ```
 :::
 
+## RTL support <Badge text="v1.1.1" type="tip" />
+
+You can enable RTL for the wizard content without flipping the steps using the `rtl` prop:
+
+```vue
+<template>
+  <form-wizard :rtl="true">
+    <tab-content title="مرحله ۱">
+      <h2>تست راست چین مرحله ۱</h2>
+      <p> محتوای مرحله ۱ </p>
+    </tab-content>
+    <tab-content title="مرحله ۲">
+      <h2>تست راست چین مرحله ۲</h2>
+      <p> محتوای مرحله ۲ </p>
+    </tab-content>
+    <tab-content title="مرحله ۳">
+      <h2>تست راست چین مرحله ۳</h2>
+      <p> محتوای مرحله ۳ </p>
+    </tab-content>
+  </form-wizard>
+</template>
+```
+
+If you also want the horizontal steps, progress bar, and footer buttons to run from right to left, use `reverse-horizontal`:
+
+```vue
+<template>
+  <form-wizard
+    :rtl="true"
+    :reverse-horizontal="true"
+    back-button-text="قبلی"
+    next-button-text="بعدی"
+    finish-button-text="تکمیل"
+  >
+    <tab-content title="مرحله ۱">
+      <h2>تست راست چین مرحله ۱</h2>
+      <p> محتوای مرحله ۱ </p>
+    </tab-content>
+    <tab-content title="مرحله ۲">
+      <h2>تست راست چین مرحله ۲</h2>
+      <p> محتوای مرحله ۲ </p>
+    </tab-content>
+    <tab-content title="مرحله ۳">
+      <h2>تست راست چین مرحله ۳</h2>
+      <p> محتوای مرحله ۳ </p>
+    </tab-content>
+  </form-wizard>
+</template>
+```
+
+Or via pure CSS, keeping the steps and progress bar LTR while making the content RTL:
+
+```css
+[dir="rtl"] .vue-form-wizard {
+  direction: ltr;
+}
+
+[dir="rtl"] .vue-form-wizard .wizard-tab-content,
+[dir="rtl"] .vue-form-wizard .wizard-tab-container {
+  direction: rtl;
+  text-align: right;
+}
+```
+
+&nbsp;
+
+<playground-rtl />
+
+:::: details View Source 💻
+
+```vue
+<template>
+  <form-wizard
+    title="تست راست چین"
+    rtl
+    reverse-horizontal
+    back-button-text="قبلی"
+    next-button-text="بعدی"
+    finish-button-text="تکمیل"
+    color="#3498db"
+    @on-complete="handleComplete('16')"
+  >
+    <tab-content title="مرحله ۱">
+      <div>
+        <h2>تست راست چین مرحله ۱</h2>
+        <p> محتوای مرحله ۱ </p>
+      </div>
+    </tab-content>
+    <tab-content title="مرحله ۲">
+      <div>
+        <h2>تست راست چین مرحله ۲</h2>
+        <p> محتوای مرحله ۲ </p>
+      </div>
+    </tab-content>
+    <tab-content title="مرحله ۳">
+      <div>
+        <h2>تست راست چین مرحله ۳</h2>
+        <p> محتوای مرحله ۳ </p>
+      </div>
+    </tab-content>
+  </form-wizard>
+</template>
+```
+::::
+
 ## Schema mode (V1) :new:
 
 Schema mode lets you define steps declaratively with `schema`, `schema-components`, and `v-model`. See the [Schema documentation](/schema/) for details.

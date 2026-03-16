@@ -5,7 +5,21 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0] - 2025-03
+## [1.1.1] - 2026-03-20
+
+### Added
+
+- RTL support for wizard content via `rtl` prop
+- Horizontal reversal for steps, progress bar, and footer buttons via `reverseHorizontal` prop
+
+### Docs
+
+- Documented `rtl` and `reverseHorizontal` props
+- Added RTL usage examples and a dedicated RTL demo
+
+---
+
+## [1.0.0] - 2026-03-16
 
 ### Added
 
