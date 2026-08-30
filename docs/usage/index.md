@@ -2,12 +2,13 @@ A dynamic form wizard to split your forms easier
 
 vue3-form-wizard is a vue based component with **no external dependencies** which simplifies tab wizard management and allows you to focus on the functional part of your app rather than wasting time on details.
 
-## Version 1 Highlights <Badge text="v1" type="info" />
+## Highlights <Badge text="v1.2" type="info" />
 
 - **Schema mode**: Declarative steps with `schema`, `condition`, `validate`, and `v-model` — see [Schema](/schema/)
-- **Classic mode**: Slot-based steps with `<tab-content>` (unchanged)
+- **Classic mode**: Slot-based steps with `<tab-content>`
+- **Dynamic steps**: Add or remove steps with `v-if` at runtime — see [below](#dynamic-steps)
 - **Router**: Supports string paths and route objects; URL sync when vue-router is installed
-- **Accessibility**: ARIA roles, keyboard navigation, unified IDs
+- **Accessibility**: Full tablist semantics and keyboard support — see [Accessibility](/accessibility/)
 - **Richer slot props**: `tabs`, `tabCount`, `wizardData`, `updateWizardData`
 
 # Usage
@@ -24,20 +25,26 @@ Download the css and js files from `dist` folder or reference them directly from
 <script src="https://unpkg.com/vue3-form-wizard"></script>
 ```
 ## Component registration
+Globally, on the app instance:
+
 ```js
-//global registration
+import { createApp } from 'vue'
 import Vue3FormWizard from 'vue3-form-wizard'
 import 'vue3-form-wizard/dist/style.css'
-Vue.use(Vue3FormWizard)
+import App from './App.vue'
 
-//local registration
-import {FormWizard, TabContent} from 'vue3-form-wizard'
+const app = createApp(App)
+app.use(Vue3FormWizard)
+app.mount('#app')
+```
+
+Or locally, in a single component:
+
+```vue
+<script setup>
+import { FormWizard, TabContent } from 'vue3-form-wizard'
 import 'vue3-form-wizard/dist/style.css'
-//component code
-components: {
-  FormWizard,
-  TabContent
-}
+</script>
 ```
 ## Template usage
 
@@ -54,6 +61,28 @@ components: {
    </tab-content>
 </form-wizard>
 ```
+## Dynamic steps
+
+Steps can appear and disappear at runtime. A step revealed by `v-if` is inserted
+at its position in your markup rather than appended to the end, and removing one
+updates the navigation, the progress bar and the step count together.
+
+```vue
+<template>
+  <form-wizard>
+    <tab-content title="Account">…</tab-content>
+    <tab-content v-if="needsBilling" title="Billing">…</tab-content>
+    <tab-content title="Review">…</tab-content>
+  </form-wizard>
+</template>
+```
+
+Changing a step's props later is picked up too — a `title` that changes when the
+user switches language, or a `before-change` that swaps with the form state.
+
+In schema mode, use a step `condition` instead of `v-if`; see
+[Schema](/schema/).
+
 ## Router Integration
 
 Vue3 Form Wizard supports automatic route synchronization with Vue Router. For detailed setup and usage instructions, see the [Router Integration](/router/) documentation.

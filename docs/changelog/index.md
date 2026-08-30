@@ -5,6 +5,40 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-08-30
+
+### Fixed
+
+- Removing a step now actually removes it. A `<tab-content>` hidden with `v-if` used to unmount its panel but keep its entry in the navigation, the progress bar and the step count
+- A step revealed later by `v-if` appears at its position in your markup instead of being appended to the end
+- Changing a step's props at runtime — `title`, `icon`, `route`, `before-change`, `after-change` — is picked up. Previously a step was registered once and never updated, which also affected translated titles
+- Every wizard on a page rendered `id="fw_1"`; each instance now gets its own id, and arrow-key focus can no longer jump into a different wizard
+- Removing the active first step no longer leaves the wizard with nothing selected
+- `reset()` no longer throws on a wizard with no steps
+- In schema mode the active step is kept when a conditional step appears or disappears
+- The progress bar no longer computes an infinite width when there are no steps
+
+### Accessibility
+
+- <kbd>Space</kbd> activates steps and the Back / Next / Finish buttons, as well as <kbd>Enter</kbd>
+- `aria-disabled` was inverted: the current step was announced as disabled while unreachable steps were announced as available
+- Unreachable steps use `tabindex="-1"` instead of an invalid empty value
+- `<li>` wrappers inside the tablist are marked `role="presentation"`
+- Arrow keys are mirrored under `reverse-horizontal`
+- Finish is disabled during an async `before-change`, matching Back and Next
+
+### Compatibility
+
+No prop, event, slot, method or generated DOM id changed. Upgrading from 1.1.x
+requires no changes.
+
+### Known issues
+
+- `require("vue3-form-wizard")` resolves to ESM, so CommonJS consumers need a dynamic `import()`. A fix needs a separate `.cjs` build and is planned for a later release
+- The emitted `.d.ts` files contain `.vue` imports that do not resolve for consumers
+
+---
+
 ## [1.1.1] - 2026-03-20
 
 ### Added
