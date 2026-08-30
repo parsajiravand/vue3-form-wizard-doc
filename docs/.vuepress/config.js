@@ -1,12 +1,25 @@
-/* const { path } = require("@vuepress/utils"); */
 import { registerComponentsPlugin } from "@vuepress/plugin-register-components";
 import { path } from "@vuepress/utils";
 import { defaultTheme } from "vuepress";
 import { googleAnalyticsPlugin } from "@vuepress/plugin-google-analytics";
 import * as dotenv from "dotenv";
 
+import { navbar, sidebar, head } from "./configs/index.js";
+
 // call dotenv and it will return an Object with a parsed key
 dotenv.config();
+
+const plugins = [
+  registerComponentsPlugin({
+    componentsDir: path.resolve(__dirname, "./components"),
+  }),
+];
+
+// Only register analytics when an id is actually configured; the plugin warns
+// on every build otherwise.
+if (process.env.GOOGLE_API_TOKEN) {
+  plugins.push(googleAnalyticsPlugin({ id: process.env.GOOGLE_API_TOKEN }));
+}
 
 export default {
   theme: defaultTheme({
@@ -18,181 +31,13 @@ export default {
           "Vue3-form-wizard is a vue based component with no external depenendcies which simplifies tab wizard management.",
       },
     },
-    logo: "https://i.postimg.cc/258CSGbV/vue3-form-wizard-icon.png",
-    navbar: [
-      // NavbarItem
-      {
-        text: "Docs",
-        link: "/usage/",
-      },
-
-      // NavbarGroup
-      {
-        text: "Github",
-        children: [
-          {
-            text: "Package",
-            link: "https://github.com/parsajiravand/vue3-form-wizard",
-          },
-          {
-            text: "Docs",
-            link: "https://github.com/parsajiravand/vue3-form-wizard-doc",
-          },
-        ],
-      },
-      // NavbarItem
-      {
-        text: "Npm",
-        link: "https://www.npmjs.com/package/vue3-form-wizard",
-      },
-      {
-        text: "Other Packages",
-        children: [
-          {
-            text: "React Form Wizard",
-            link: "https://github.com/parsajiravand/react-form-wizard",
-          },
-          {
-            text: "Vue Client Recaptcha",
-            link: "https://github.com/parsajiravand/vue-client-recaptcha",
-          },
-          {
-            text: "Helping Js",
-            link: "https://github.com/parsajiravand/helping-js",
-          },
-          {
-            text: "Simple Form Data",
-            link: "https://github.com/parsajiravand/simple-form-data"
-          },
-          {
-            text: "Vue Advanced Screen Recorder",
-            link: "https://github.com/parsajiravand/vue-advanced-screen-recorder",
-          },
-          {
-            text: "Vue Camera Kit",
-            link: "https://github.com/parsajiravand/vue-camera-kit",
-          },
-          {
-            text: "Vue Heic Image",
-            link: "https://github.com/parsajiravand/vue-heic-image",
-          },
-        ],
-      },
-    ],
-    sidebar: [
-      // NavbarItem
-      {
-        text: "Usage",
-        link: "/usage/",
-      },
-      {
-        text: "Schema (V1)",
-        link: "/schema/",
-      },
-      {
-        text: "Props",
-        link: "/props/",
-      },
-      {
-        text: "Events",
-        link: "/events/",
-      },
-      {
-        text: "Slots",
-        link: "/slots/",
-      },
-      {
-        text: "Refs",
-        link: "/refs/",
-      },
-      {
-        text: "Scoped slots",
-        link: "/scoped-slots/",
-      },
-      {
-        text: "Router",
-        link: "/router/",
-      },
-      {
-        text: "Demos",
-        link: "/demos/",
-      },
-      {
-        text: "Playground",
-        link: "/playground/",
-      },
-      {
-        text: "Changelog",
-        link: "/changelog/",
-      },
-    ],
+    logo: "/logo.svg",
+    repo: "parsajiravand/vue3-form-wizard",
+    docsRepo: "parsajiravand/vue3-form-wizard-doc",
+    docsDir: "docs",
+    navbar,
+    sidebar,
   }),
-  plugins: [
-    registerComponentsPlugin({
-      componentsDir: path.resolve(__dirname, "./components"),
-    }),
-    googleAnalyticsPlugin({
-      // options
-      id: process.env.GOOGLE_API_TOKEN,
-    }),
-  ],
-  head: [
-    [
-      "link",
-      {
-        rel: "apple-touch-icon",
-        sizes: "180x180",
-        href: "https://i.postimg.cc/258CSGbV/vue3-form-wizard-icon.png",
-      },
-    ],
-    [
-      "link",
-      {
-        rel: "icon",
-        type: "image/png",
-        sizes: "32x32",
-        href: "https://i.postimg.cc/258CSGbV/vue3-form-wizard-icon.png",
-      },
-    ],
-    [
-      "link",
-      {
-        rel: "icon",
-        type: "image/png",
-        sizes: "16x16",
-        href: "https://i.postimg.cc/258CSGbV/vue3-form-wizard-icon.png",
-      },
-    ],
-    [
-      "link",
-      {
-        rel: "mask-icon",
-        href: "https://i.postimg.cc/258CSGbV/vue3-form-wizard-icon.png",
-        color: "#3a0839",
-      },
-    ],
-    [
-      "link",
-      {
-        rel: "shortcut icon",
-        href: "https://i.postimg.cc/258CSGbV/vue3-form-wizard-icon.png",
-      },
-    ],
-    ["meta", { name: "msapplication-TileColor", content: "#3a0839" }],
-    [
-      "meta",
-      {
-        name: "msapplication-config",
-        content: "/assets/favicons/browserconfig.xml",
-      },
-    ],
-    ["meta", { name: "theme-color", content: "#ffffff" }],
-    [
-      "meta",
-      {
-        name: "google-site-verification",
-        content: "0y7LzJnAhOU_iqkHxRZDzwrZPFKDV5j6Uyf4VBUED6U",
-      },
-    ],
-  ],
+  plugins,
+  head,
 };
